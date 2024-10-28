@@ -88,7 +88,7 @@ export class HttpProvider {
     const key = this.#options.getAccesskey(this.keys);
     const config = this.getApiConfig(key);
     let url = endpoint;
-    if (url) url += `?${new URLSearchParams(init).toString()}`;
+    if (url) url += `?${new URLSearchParams(JSON.parse(JSON.stringify(init))).toString()}`;
     const { data } = await this.#client.get(url, config);
     return Result.from(data);
   }
